@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -29,38 +28,35 @@ const MouseEffect: React.FC = () => {
   
   return (
     <>
-      <motion.div 
-        className="fixed top-0 left-0 w-[50px] h-[50px] rounded-full pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 25,
-          y: mousePosition.y - 25,
-          scale: isMoving ? 0.5 : 1
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 150,
-          damping: 15,
-          mass: 0.1
-        }}
-        style={{ 
-          background: 'rgba(255, 255, 255, 0.25)',
-          border: '1px solid rgba(255, 255, 255, 0.3)'
-        }}
-      />
+      {/* Studio art style floating elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-10">
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0) 70%)`,
+              width: `${Math.random() * 50 + 30}px`,
+              height: `${Math.random() * 50 + 30}px`,
+              left: `${Math.random() * 100}vw`,
+              top: `${Math.random() * 100}vh`,
+            }}
+            animate={{
+              x: [0, Math.random() * 40 - 20],
+              y: [0, Math.random() * 40 - 20],
+              scale: [1, Math.random() * 0.5 + 0.8, 1],
+            }}
+            transition={{
+              duration: Math.random() * 3 + 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
       
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-50"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 250,
-          damping: 20
-        }}
-      />
-      
+      {/* Mouse glow effect - keeping this one */}
       <div 
         className="glow-effect fixed pointer-events-none z-30"
         style={{

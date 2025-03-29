@@ -8,18 +8,19 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark'); // Default to dark
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.className = savedTheme;
-    } else if (prefersDark) {
+    } else {
+      // Set dark as default
       setTheme('dark');
       document.documentElement.className = 'dark';
+      localStorage.setItem('theme', 'dark');
     }
   }, []);
 
