@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
@@ -52,24 +51,24 @@ const educationData = [
   }
 ];
 
-// Skills data
+// Skills data - Fixed category types to match the expected union type
 const skillsData = [
-  { name: "C++", level: 95, category: "language" },
-  { name: "Python", level: 90, category: "language" },
-  { name: "JavaScript", level: 85, category: "language" },
-  { name: "Golang", level: 80, category: "language" },
-  { name: "Svelte", level: 75, category: "framework" },
-  { name: "Haskell", level: 70, category: "language" },
-  { name: "Java", level: 65, category: "language" },
-  { name: "HTML/CSS", level: 80, category: "language" },
-  { name: "ReactJS", level: 80, category: "framework" },
-  { name: "NodeJS", level: 85, category: "framework" },
-  { name: "Express", level: 75, category: "framework" },
-  { name: "PostgreSQL", level: 70, category: "language" },
-  { name: "Git/GitHub", level: 85, category: "tool" },
-  { name: "LaTeX", level: 70, category: "tool" },
-  { name: "MATLAB", level: 60, category: "tool" },
-  { name: "Bash", level: 65, category: "language" },
+  { name: "C++", level: 95, category: "language" as const },
+  { name: "Python", level: 90, category: "language" as const },
+  { name: "JavaScript", level: 85, category: "language" as const },
+  { name: "Golang", level: 80, category: "language" as const },
+  { name: "Svelte", level: 75, category: "framework" as const },
+  { name: "Haskell", level: 70, category: "language" as const },
+  { name: "Java", level: 65, category: "language" as const },
+  { name: "HTML/CSS", level: 80, category: "language" as const },
+  { name: "ReactJS", level: 80, category: "framework" as const },
+  { name: "NodeJS", level: 85, category: "framework" as const },
+  { name: "Express", level: 75, category: "framework" as const },
+  { name: "PostgreSQL", level: 70, category: "language" as const },
+  { name: "Git/GitHub", level: 85, category: "tool" as const },
+  { name: "LaTeX", level: 70, category: "tool" as const },
+  { name: "MATLAB", level: 60, category: "tool" as const },
+  { name: "Bash", level: 65, category: "language" as const },
 ];
 
 // Projects data
@@ -88,37 +87,37 @@ const projectsData = [
   }
 ];
 
-// Achievements data
+// Achievements data - Fixed icon types to match the expected union type
 const achievementsData = [
   {
     title: "Ultimate Team Award",
     description: "Delivered 7 projects in 3 months with a 2-engineer team at Zeta, demonstrating speed and hardwork.",
-    icon: "trophy"
+    icon: "trophy" as const
   },
   {
     title: "Master at CodeForces",
     description: "2169 rating, Top 50 in India at CodeForces and 2154 (5 stars) at CodeChef",
-    icon: "star"
+    icon: "star" as const
   },
   {
     title: "ETHIndia Hackathon Winner",
     description: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs",
-    icon: "award"
+    icon: "award" as const
   },
   {
     title: "Global Rank 9",
     description: "India Rank 2 in Codeforces Round 987 (Div. 2)",
-    icon: "medal"
+    icon: "medal" as const
   },
   {
     title: "LeetCode Contest 400",
     description: "India Rank 7, and Global Rank 67 in LeetCode Weekly Contest 400",
-    icon: "medal"
+    icon: "medal" as const
   },
   {
     title: "ACM ICPC Regionalist",
     description: "4 Times ACM ICPC Regionalist from 2021- 2024",
-    icon: "trophy"
+    icon: "trophy" as const
   }
 ];
 
