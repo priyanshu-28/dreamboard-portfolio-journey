@@ -11,16 +11,16 @@ const Header: React.FC = () => {
     const timer = setTimeout(() => {
       setTypingComplete(true);
     }, 3500); // Match the typing animation duration
-    
+
     return () => clearTimeout(timer);
   }, []);
 
   // Top 4 highlights to display
   const highlights = [
+    { text: " Ultimate Team Award, Zeta: Delivered 7 projects in 3 months with a 2-engineer team, demonstrating speed and hardwork.", color: "text-tech-green" },
     { text: "2169 (Master) Top 50 in India at CodeForces", color: "text-tech-purple" },
-    { text: "Global Rank 9 in Codeforces Round 987", color: "text-tech-blue" },
-    { text: "4 Times ACM ICPC Regionalist", color: "text-tech-cyan" },
-    { text: "75% reduction in manual intervention", color: "text-tech-green" }
+    { text: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs", color: "text-tech-blue" },
+    { text: "4 Times ACM ICPC Regionalist", color: "text-tech-cyan" }
   ];
 
   return (
@@ -35,18 +35,18 @@ const Header: React.FC = () => {
           backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 30%), radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.05) 0%, transparent 40%)',
         }}
       />
-      
+
       <div className="container px-4 mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
             <HoverCard>
               <HoverCardTrigger>
-                <motion.h1 
+                <motion.h1
                   className="text-4xl md:text-5xl font-bold mb-4 relative inline-block cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
                     color: "rgba(139, 92, 246, 1)",
                     transition: { duration: 0.2 }
@@ -61,14 +61,14 @@ const Header: React.FC = () => {
                   <h3 className="text-lg font-semibold">Priyanshu Pathak</h3>
                   <p className="text-sm text-muted-foreground">Software Engineer & Competitive Programmer</p>
                   <div className="h-0.5 w-full bg-gradient-to-r from-accent to-primary/50 my-1"></div>
-                  <p className="text-xs">Top 50 in India at CodeForces with a rating of 2169</p>
+                  <p className="text-xs">SWE at Zeta & Top 50 in India at CodeForces with a rating of 2169</p>
                 </div>
               </HoverCardContent>
             </HoverCard>
-            
+
             <div className="h-8 mb-6">
               {typingComplete ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
@@ -81,23 +81,22 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
-            
-            <motion.p 
+
+            <motion.p
               className="text-muted-foreground mb-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
             >
-              Building high-performance software solutions and crushing competitive programming challenges.
-              Top 50 in India at CodeForces and leading engineering teams to deliver impactful projects.
+              A chill guy, building high-performance software solutions, and doing competitive programming in free time.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.5 }}
             >
-              <SparkButton 
+              <SparkButton
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
                 onClick={() => window.scrollTo({ top: document.getElementById('experience')?.offsetTop, behavior: 'smooth' })}
               >
@@ -105,8 +104,8 @@ const Header: React.FC = () => {
               </SparkButton>
             </motion.div>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             className="perspective-text"
             initial={{ opacity: 0, rotateY: 30 }}
             animate={{ opacity: 1, rotateY: 0 }}
@@ -119,7 +118,7 @@ const Header: React.FC = () => {
                 <ul className="space-y-2">
                   {highlights.map((highlight, index) => (
                     <li key={index} className="flex items-center">
-                      <span className={`mr-2 ${highlight.color}`}>•</span> 
+                      <span className={`mr-2 ${highlight.color}`}>•</span>
                       {highlight.text}
                     </li>
                   ))}
@@ -129,9 +128,9 @@ const Header: React.FC = () => {
           </motion.div>
         </div>
       </div>
-      
+
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <SparkButton 
+        <SparkButton
           onClick={() => window.scrollTo({ top: document.getElementById('experience')?.offsetTop, behavior: 'smooth' })}
           className="bg-background/50 backdrop-blur-sm p-2 rounded-full"
         >

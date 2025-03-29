@@ -19,7 +19,8 @@ const experienceData = [
     description: [
       "Developed internal platforms using VueJS, NodeJS and performed cross collaboration with teams across the organization, that resulted in increased productivity of engineers by 20%",
       "Responsible for $100k cost reduction by building in-house tools and automated systems, optimizing workflows using AI Agents, and minimizing reliance on third-party services",
-      "Built an AI-powered chatbot using large language models, serving 200k+ users, reducing manual intervention by 75%, and processing 500k+ queries monthly, resulting in improved user satisfaction and engagement"
+      "Created and integrated Blog-in, Discourse-App to Microsoft Teams Chat, to enhance user experience, and boost productivity",
+      "Built an AI-powered chatbot using large language models, and low-code platform, serving 200k+ users, reducing manual intervention by 75%, and processing 500k+ queries monthly, resulting in improved user satisfaction and engagement"
     ],
   },
   {
@@ -126,9 +127,9 @@ const achievementsData = [
 
 const sectionVariants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
-    transition: { 
+    transition: {
       duration: 0.6
     }
   }
@@ -139,13 +140,13 @@ const Index: React.FC = () => {
     <Layout>
       <MouseEffect />
       <Navigation />
-      
+
       <section id="home">
         <Header />
       </section>
-      
-      <motion.section 
-        id="experience" 
+
+      <motion.section
+        id="experience"
         className="py-20 px-4 bg-background section-transition"
         initial="hidden"
         whileInView="visible"
@@ -157,9 +158,9 @@ const Index: React.FC = () => {
           <Timeline items={experienceData} />
         </div>
       </motion.section>
-      
-      <motion.section 
-        id="education" 
+
+      <motion.section
+        id="education"
         className="py-20 px-4 bg-secondary/30 section-transition"
         initial="hidden"
         whileInView="visible"
@@ -171,9 +172,9 @@ const Index: React.FC = () => {
           <Timeline items={educationData} />
         </div>
       </motion.section>
-      
-      <motion.section 
-        id="skills" 
+
+      <motion.section
+        id="skills"
         className="py-20 px-4 bg-background section-transition"
         initial="hidden"
         whileInView="visible"
@@ -185,9 +186,9 @@ const Index: React.FC = () => {
           <SkillsSection skills={skillsData} />
         </div>
       </motion.section>
-      
-      <motion.section 
-        id="projects" 
+
+      <motion.section
+        id="projects"
         className="py-20 px-4 bg-secondary/30 section-transition"
         initial="hidden"
         whileInView="visible"
@@ -199,9 +200,9 @@ const Index: React.FC = () => {
           <ProjectsSection projects={projectsData} />
         </div>
       </motion.section>
-      
-      <motion.section 
-        id="achievements" 
+
+      <motion.section
+        id="achievements"
         className="py-20 px-4 bg-background section-transition"
         initial="hidden"
         whileInView="visible"
@@ -213,9 +214,9 @@ const Index: React.FC = () => {
           <AchievementsSection achievements={achievementsData} />
         </div>
       </motion.section>
-      
-      <motion.section 
-        id="contact" 
+
+      <motion.section
+        id="contact"
         className="py-20 px-4 bg-secondary/30"
         initial="hidden"
         whileInView="visible"
@@ -227,7 +228,7 @@ const Index: React.FC = () => {
           <ContactSection />
         </div>
       </motion.section>
-      
+
       <footer className="py-6 px-4 bg-background text-center text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} Priyanshu Pathak. All rights reserved.</p>
       </footer>
