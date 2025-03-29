@@ -7,18 +7,18 @@ const MouseEffect: React.FC = () => {
   const [isMoving, setIsMoving] = useState(false);
   
   useEffect(() => {
+    let movingTimeout: ReturnType<typeof setTimeout>; // Declare the variable first
+    
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       setIsMoving(true);
       
       // Reset the moving state after a delay
       clearTimeout(movingTimeout);
-      const movingTimeout = setTimeout(() => {
+      movingTimeout = setTimeout(() => {
         setIsMoving(false);
       }, 100);
     };
-    
-    let movingTimeout: ReturnType<typeof setTimeout>;
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
