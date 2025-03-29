@@ -14,6 +14,14 @@ const Header: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Top 4 highlights to display
+  const highlights = [
+    { text: "2169 (Master) Top 50 in India at CodeForces", color: "text-tech-purple" },
+    { text: "Global Rank 9 in Codeforces Round 987", color: "text-tech-blue" },
+    { text: "4 Times ACM ICPC Regionalist", color: "text-tech-cyan" },
+    { text: "75% reduction in manual intervention", color: "text-tech-green" }
+  ];
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-hero-pattern pt-16">
       <div className="absolute inset-0 bg-tech-grid bg-[length:50px_50px] opacity-10 pointer-events-none"></div>
@@ -90,22 +98,12 @@ const Header: React.FC = () => {
               <div className="glass-card p-6 z-10 relative transform rotate-3 animate-float">
                 <h3 className="text-xl font-bold mb-4">Highlights</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <span className="mr-2 text-tech-purple">•</span> 
-                    2169 (Master) Top 50 in India at CodeForces
-                  </li>
-                  <li className="flex items-center">
-                    <span className="mr-2 text-tech-blue">•</span>
-                    Global Rank 9 in Codeforces Round 987
-                  </li>
-                  <li className="flex items-center">
-                    <span className="mr-2 text-tech-cyan">•</span>
-                    4 Times ACM ICPC Regionalist
-                  </li>
-                  <li className="flex items-center">
-                    <span className="mr-2 text-tech-green">•</span>
-                    Achieved 75% reduction in manual intervention
-                  </li>
+                  {highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className={`mr-2 ${highlight.color}`}>•</span> 
+                      {highlight.text}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

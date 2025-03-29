@@ -39,7 +39,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
       </button>
-      <main>
+      <main className="relative overflow-x-hidden">
         {children}
       </main>
     </div>

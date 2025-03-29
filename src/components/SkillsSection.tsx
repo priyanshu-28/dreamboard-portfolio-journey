@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SparkButton from './SparkButton';
@@ -27,14 +26,14 @@ interface SkillsSectionProps {
 const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   const [filter, setFilter] = useState<'all' | 'language' | 'framework' | 'tool'>('all');
   
-  const filteredSkills = filter === 'all' 
-    ? skills 
-    : skills.filter(skill => skill.category === filter);
+  const getFilterClass = (category: string) => {
+    if (filter === 'all') return '';
+    return filter === category ? '' : 'opacity-30 scale-95';
+  };
     
   const getSkillIcon = (name: string) => {
     const iconProps = { size: 24, className: "text-accent group-hover:text-primary" };
     
-    // Map skill names to appropriate icons
     switch(name.toLowerCase()) {
       case 'c++':
         return <Code2 {...iconProps} />;
@@ -124,11 +123,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
       >
-        {filteredSkills.map((skill, index) => (
+        {skills.map((skill, index) => (
           <motion.div 
             key={index} 
             variants={item}
-            className="group"
+            className={`group transition-all duration-300 ${getFilterClass(skill.category)}`}
           >
             <div className="bg-card rounded-lg p-4 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center gap-3 h-full group-hover:bg-accent/5 group-hover:-translate-y-1">
               <div className="p-3 bg-accent/10 rounded-full transition-all duration-300 group-hover:bg-accent/20">

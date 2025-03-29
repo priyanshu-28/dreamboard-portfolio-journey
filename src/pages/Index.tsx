@@ -6,6 +6,8 @@ import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
+import Navigation from '@/components/Navigation';
+import MouseEffect from '@/components/MouseEffect';
 import { motion } from 'framer-motion';
 
 // Experience data
@@ -52,7 +54,7 @@ const educationData = [
   }
 ];
 
-// Skills data - Fixed category types to match the expected union type
+// Skills data
 const skillsData = [
   { name: "C++", level: 95, category: "language" as const },
   { name: "Python", level: 90, category: "language" as const },
@@ -88,22 +90,12 @@ const projectsData = [
   }
 ];
 
-// Achievements data - Fixed icon types to match the expected union type
+// Achievements data
 const achievementsData = [
-  {
-    title: "Ultimate Team Award",
-    description: "Delivered 7 projects in 3 months with a 2-engineer team at Zeta, demonstrating speed and hardwork.",
-    icon: "trophy" as const
-  },
   {
     title: "Master at CodeForces",
     description: "2169 rating, Top 50 in India at CodeForces and 2154 (5 stars) at CodeChef",
     icon: "star" as const
-  },
-  {
-    title: "ETHIndia Hackathon Winner",
-    description: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs",
-    icon: "award" as const
   },
   {
     title: "Global Rank 9",
@@ -111,14 +103,24 @@ const achievementsData = [
     icon: "medal" as const
   },
   {
-    title: "LeetCode Contest 400",
-    description: "India Rank 7, and Global Rank 67 in LeetCode Weekly Contest 400",
-    icon: "medal" as const
+    title: "Ultimate Team Award",
+    description: "Delivered 7 projects in 3 months with a 2-engineer team at Zeta, demonstrating speed and hardwork.",
+    icon: "trophy" as const
   },
   {
     title: "ACM ICPC Regionalist",
     description: "4 Times ACM ICPC Regionalist from 2021- 2024",
     icon: "trophy" as const
+  },
+  {
+    title: "LeetCode Contest 400",
+    description: "India Rank 7, and Global Rank 67 in LeetCode Weekly Contest 400",
+    icon: "medal" as const
+  },
+  {
+    title: "ETHIndia Hackathon Winner",
+    description: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs",
+    icon: "award" as const
   }
 ];
 
@@ -135,7 +137,12 @@ const sectionVariants = {
 const Index: React.FC = () => {
   return (
     <Layout>
-      <Header />
+      <MouseEffect />
+      <Navigation />
+      
+      <section id="home">
+        <Header />
+      </section>
       
       <motion.section 
         id="experience" 
