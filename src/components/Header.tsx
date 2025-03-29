@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SparkButton from './SparkButton';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 const Header: React.FC = () => {
   const [typingComplete, setTypingComplete] = useState(false);
@@ -38,14 +39,32 @@ const Header: React.FC = () => {
       <div className="container px-4 mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
-            <motion.h1 
-              className="text-4xl md:text-5xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Priyanshu Pathak
-            </motion.h1>
+            <HoverCard>
+              <HoverCardTrigger>
+                <motion.h1 
+                  className="text-4xl md:text-5xl font-bold mb-4 relative inline-block cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    color: "rgba(139, 92, 246, 1)",
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  Priyanshu Pathak
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-purple to-tech-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                </motion.h1>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80 bg-card/90 backdrop-blur-sm border border-accent/20">
+                <div className="flex flex-col space-y-2">
+                  <h3 className="text-lg font-semibold">Priyanshu Pathak</h3>
+                  <p className="text-sm text-muted-foreground">Software Engineer & Competitive Programmer</p>
+                  <div className="h-0.5 w-full bg-gradient-to-r from-accent to-primary/50 my-1"></div>
+                  <p className="text-xs">Top 50 in India at CodeForces with a rating of 2169</p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
             
             <div className="h-8 mb-6">
               {typingComplete ? (
