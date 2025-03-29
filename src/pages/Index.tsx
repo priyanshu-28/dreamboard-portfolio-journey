@@ -6,6 +6,7 @@ import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
+import { motion } from 'framer-motion';
 
 // Experience data
 const experienceData = [
@@ -121,52 +122,104 @@ const achievementsData = [
   }
 ];
 
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.6
+    }
+  }
+};
+
 const Index: React.FC = () => {
   return (
     <Layout>
       <Header />
       
-      <section id="experience" className="py-20 px-4 bg-background">
+      <motion.section 
+        id="experience" 
+        className="py-20 px-4 bg-background section-transition"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Experience</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Experience</h2>
           <Timeline items={experienceData} />
         </div>
-      </section>
+      </motion.section>
       
-      <section id="education" className="py-20 px-4 bg-secondary/30">
+      <motion.section 
+        id="education" 
+        className="py-20 px-4 bg-secondary/30 section-transition"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Education</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Education</h2>
           <Timeline items={educationData} />
         </div>
-      </section>
+      </motion.section>
       
-      <section id="skills" className="py-20 px-4 bg-background">
+      <motion.section 
+        id="skills" 
+        className="py-20 px-4 bg-background section-transition"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Skills</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-glow-animation">Skills</h2>
           <SkillsSection skills={skillsData} />
         </div>
-      </section>
+      </motion.section>
       
-      <section id="projects" className="py-20 px-4 bg-secondary/30">
+      <motion.section 
+        id="projects" 
+        className="py-20 px-4 bg-secondary/30 section-transition"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Projects</h2>
           <ProjectsSection projects={projectsData} />
         </div>
-      </section>
+      </motion.section>
       
-      <section id="achievements" className="py-20 px-4 bg-background">
+      <motion.section 
+        id="achievements" 
+        className="py-20 px-4 bg-background section-transition"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Achievements</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Achievements</h2>
           <AchievementsSection achievements={achievementsData} />
         </div>
-      </section>
+      </motion.section>
       
-      <section id="contact" className="py-20 px-4 bg-secondary/30">
+      <motion.section 
+        id="contact" 
+        className="py-20 px-4 bg-secondary/30"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Contact</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Contact</h2>
           <ContactSection />
         </div>
-      </section>
+      </motion.section>
       
       <footer className="py-6 px-4 bg-background text-center text-sm text-muted-foreground">
         <p>© {new Date().getFullYear()} Priyanshu Pathak. All rights reserved.</p>

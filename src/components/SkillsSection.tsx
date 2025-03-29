@@ -1,7 +1,18 @@
 
 import React, { useState } from 'react';
-import { Badge } from '@/components/ui/badge';
+import { motion } from 'framer-motion';
 import SparkButton from './SparkButton';
+import { 
+  Code2, 
+  Server, 
+  Terminal, 
+  Database, 
+  Globe, 
+  Cpu, 
+  Layers, 
+  Settings, 
+  Palette
+} from 'lucide-react';
 
 interface Skill {
   name: string;
@@ -20,11 +31,61 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
     ? skills 
     : skills.filter(skill => skill.category === filter);
     
-  const getSkillColor = (level: number) => {
-    if (level >= 80) return 'bg-tech-purple hover:bg-tech-purple/80';
-    if (level >= 60) return 'bg-tech-blue hover:bg-tech-blue/80';
-    if (level >= 40) return 'bg-tech-cyan hover:bg-tech-cyan/80';
-    return 'bg-tech-green hover:bg-tech-green/80';
+  const getSkillIcon = (name: string) => {
+    const iconProps = { size: 24, className: "text-accent group-hover:text-primary" };
+    
+    // Map skill names to appropriate icons
+    switch(name.toLowerCase()) {
+      case 'c++':
+        return <Code2 {...iconProps} />;
+      case 'python':
+        return <Terminal {...iconProps} />;
+      case 'javascript':
+        return <Globe {...iconProps} />;
+      case 'reactjs':
+        return <Layers {...iconProps} />;
+      case 'nodejs':
+        return <Server {...iconProps} />;
+      case 'express':
+        return <Server {...iconProps} />;
+      case 'postgresql':
+        return <Database {...iconProps} />;
+      case 'git/github':
+        return <Code2 {...iconProps} />;
+      case 'svelte':
+        return <Cpu {...iconProps} />;
+      case 'golang':
+        return <Globe {...iconProps} />;
+      case 'haskell':
+        return <Terminal {...iconProps} />;
+      case 'java':
+        return <Cpu {...iconProps} />;
+      case 'html/css':
+        return <Palette {...iconProps} />;
+      case 'latex':
+        return <Code2 {...iconProps} />;
+      case 'matlab':
+        return <Settings {...iconProps} />;
+      case 'bash':
+        return <Terminal {...iconProps} />;
+      default:
+        return <Code2 {...iconProps} />;
+    }
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+  
+  const item = {
+    hidden: { opacity: 0, scale: 0.9 },
+    show: { opacity: 1, scale: 1 }
   };
 
   return (
@@ -56,24 +117,28 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         </SparkButton>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <motion.div 
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {filteredSkills.map((skill, index) => (
-          <div key={index} className="bg-card rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="font-medium">{skill.name}</h3>
-              <Badge className={getSkillColor(skill.level)}>
-                {skill.level}%
-              </Badge>
+          <motion.div 
+            key={index} 
+            variants={item}
+            className="group"
+          >
+            <div className="bg-card rounded-lg p-4 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center gap-3 h-full group-hover:bg-accent/5 group-hover:-translate-y-1">
+              <div className="p-3 bg-accent/10 rounded-full transition-all duration-300 group-hover:bg-accent/20">
+                {getSkillIcon(skill.name)}
+              </div>
+              <h3 className="font-medium text-center text-sm">{skill.name}</h3>
             </div>
-            <div className="w-full bg-secondary rounded-full h-2">
-              <div 
-                className={`h-2 rounded-full ${getSkillColor(skill.level)}`} 
-                style={{ width: `${skill.level}%` }}
-              ></div>
-            </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

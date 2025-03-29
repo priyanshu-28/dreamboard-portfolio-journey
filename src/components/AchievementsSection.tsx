@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trophy, Award, Medal, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface Achievement {
   title: string;
@@ -14,30 +15,20 @@ interface AchievementsSectionProps {
 }
 
 const AchievementsSection: React.FC<AchievementsSectionProps> = ({ achievements }) => {
-  const achievementsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-float');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const achievementElements = achievementsRef.current?.querySelectorAll('.achievement-card');
-    achievementElements?.forEach((el) => observer.observe(el));
-
-    return () => {
-      if (achievementElements) {
-        achievementElements.forEach((el) => observer.unobserve(el));
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
       }
-    };
-  }, [achievements]);
+    }
+  };
+  
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
 
   const getIcon = (icon: string) => {
     switch (icon) {
@@ -55,26 +46,31 @@ const AchievementsSection: React.FC<AchievementsSectionProps> = ({ achievements 
   };
 
   return (
-    <div ref={achievementsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <motion.div 
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {achievements.map((achievement, index) => (
-        <Card 
-          key={index} 
-          className="achievement-card opacity-0 transition-all duration-500 ease-out border-t-4 border-t-accent hover:shadow-lg"
-        >
-          <CardHeader className="pb-2">
-            <div className="flex justify-between items-start">
-              <CardTitle className="text-lg">{achievement.title}</CardTitle>
-              <div className="bg-accent/10 p-2 rounded-full">
-                {getIcon(achievement.icon)}
+        <motion.div key={index} variants={item}>
+          <Card className="border-t-4 border-t-accent hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="pb-2">
+              <div className="flex justify-between items-start">
+                <CardTitle className="text-lg">{achievement.title}</CardTitle>
+                <div className="bg-accent/10 p-2 rounded-full">
+                  {getIcon(achievement.icon)}
+                </div>
               </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <CardDescription>{achievement.description}</CardDescription>
-          </CardContent>
-        </Card>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>{achievement.description}</CardDescription>
+            </CardContent>
+          </Card>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
