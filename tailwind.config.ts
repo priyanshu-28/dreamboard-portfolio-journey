@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,9 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'Comic Neue', 'sans-serif'],
+				sans: ['Inter', 'sans-serif'],
 				mono: ['Fira Code', 'monospace'],
-				comic: ['Comic Neue', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -75,20 +75,6 @@ export default {
 					yellow: '#f59e0b',
 					red: '#ef4444',
 				},
-				marvel: {
-					red: '#ea384c',
-					blue: '#0EA5E9',
-					purple: '#D946EF',
-					orange: '#F97316',
-					black: '#000000e6',
-				},
-				ghibli: {
-					blue: '#4DA6FF',
-					green: '#7ED957',
-					tan: '#F0E6D2',
-					brown: '#A67C52',
-					red: '#FF7F50',
-				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -138,14 +124,6 @@ export default {
 						transform: 'translateY(-40px) scale(0)',
 						opacity: '0'
 					}
-				},
-				'pulse-hero': {
-					'0%, 100%': { transform: 'scale(1)', opacity: '0.8' },
-					'50%': { transform: 'scale(1.05)', opacity: '1' },
-				},
-				'comic-shake': {
-					'0%, 100%': { transform: 'rotate(-1deg)' },
-					'50%': { transform: 'rotate(1deg)' },
 				}
 			},
 			animation: {
@@ -156,15 +134,12 @@ export default {
 				'gradient-shift': 'gradient-shift 8s ease infinite',
 				'typing': 'typing 3.5s steps(40, end)',
 				'cursor-blink': 'blink 1s step-end infinite',
-				'spark': 'spark 0.7s ease-out',
-				'pulse-hero': 'pulse-hero 3s ease-in-out infinite',
-				'comic-shake': 'comic-shake 0.5s ease-in-out',
+				'spark': 'spark 0.7s ease-out'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'hero-pattern': 'url("data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.05" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E")',
-				'tech-grid': 'linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px)',
-				'comic-pattern': 'radial-gradient(circle, rgba(234, 56, 76, 0.05) 1px, transparent 1px)',
+				'tech-grid': 'linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px)'
 			}
 		}
 	},

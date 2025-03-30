@@ -1,7 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,83 +8,83 @@
 
 @layer base {
   :root {
-    --background: 42 38% 95%;
-    --foreground: 45 35% 13%;
+    --background: 220 25% 97%;
+    --foreground: 222 66% 10%;
 
-    --card: 40 38% 98%;
-    --card-foreground: 45 35% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 66% 10%;
 
-    --popover: 40 38% 98%;
-    --popover-foreground: 45 35% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 66% 10%;
 
-    --primary: 194 70% 32%;
-    --primary-foreground: 40 38% 98%;
+    --primary: 222 84% 40%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 43 74% 90%;
-    --secondary-foreground: 45 35% 13%;
+    --secondary: 210 16% 93%;
+    --secondary-foreground: 222 66% 10%;
 
-    --muted: 43 74% 90%;
-    --muted-foreground: 45 29% 32%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 142 71% 45%;
-    --accent-foreground: 45 35% 13%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 40 38% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 43 24% 84%;
-    --input: 43 24% 84%;
-    --ring: 194 70% 32%;
+    --border: 214 32% 90%;
+    --input: 214 32% 90%;
+    --ring: 222 84% 40%;
 
-    --sidebar-background: 40 38% 98%;
-    --sidebar-foreground: 45 35% 13%;
-    --sidebar-border: 43 24% 84%;
-    --sidebar-primary: 194 70% 32%;
-    --sidebar-primary-foreground: 40 38% 98%;
-    --sidebar-accent: 142 71% 45%;
-    --sidebar-accent-foreground: 45 35% 13%;
-    --sidebar-ring: 194 70% 32%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 66% 10%;
+    --sidebar-border: 214 32% 90%;
+    --sidebar-primary: 222 84% 40%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 262 83% 58%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-ring: 222 84% 40%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 200 35% 10%;
-    --foreground: 210 20% 90%;
+    --background: 222 47% 10%;
+    --foreground: 210 40% 98%;
 
-    --card: 200 35% 8%;
-    --card-foreground: 210 20% 90%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 200 35% 8%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 194 70% 42%;
-    --primary-foreground: 200 35% 10%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 10%;
 
-    --secondary: 202 40% 20%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 202 40% 20%;
-    --muted-foreground: 210 20% 65%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 142 71% 45%;
-    --accent-foreground: 200 35% 10%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 90%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 202 40% 20%;
-    --input: 202 40% 20%;
-    --ring: 194 70% 42%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
 
-    --sidebar-background: 200 35% 8%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-border: 202 40% 20%;
-    --sidebar-primary: 194 70% 42%;
-    --sidebar-primary-foreground: 200 35% 10%;
-    --sidebar-accent: 142 71% 45%;
-    --sidebar-accent-foreground: 200 35% 10%;
-    --sidebar-ring: 194 70% 42%;
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 10%;
+    --sidebar-accent: 262 83% 58%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -131,7 +130,7 @@
   }
   
   .glass-card {
-    @apply bg-background/80 backdrop-blur-md border-2 border-border rounded-xl shadow-lg;
+    @apply bg-background/80 backdrop-blur-md border border-border rounded-xl shadow-lg;
   }
 
   section {
@@ -142,18 +141,6 @@
     @apply content-[""] absolute top-0 left-0 w-full h-full pointer-events-none;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  
-  .comic-border {
-    @apply border-4 border-foreground rounded-xl shadow-[8px_8px_0_0_rgba(0,0,0,0.2)];
-  }
-  
-  .comic-card {
-    @apply bg-card border-4 border-foreground rounded-xl shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] relative overflow-hidden;
-  }
-  
-  .comic-button {
-    @apply bg-primary text-primary-foreground border-2 border-foreground rounded-xl px-6 py-3 shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all;
-  }
 
   .section-transition::after {
     content: '';
@@ -163,24 +150,6 @@
     right: 0;
     height: 6px;
     background: linear-gradient(90deg, transparent, hsla(var(--accent), 0.2), transparent);
-  }
-  
-  .ghibli-bg {
-    @apply relative;
-  }
-  
-  .ghibli-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/lovable-uploads/58513bef-2859-4caa-853c-b6bf3e51c62d.png');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: -1;
   }
 }
 
@@ -212,3 +181,4 @@
 .text-glow-animation {
   animation: textGlow 4s ease-in-out infinite;
 }
+

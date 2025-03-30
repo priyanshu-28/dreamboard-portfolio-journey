@@ -5,20 +5,12 @@ interface SparkButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
-  href?: string;
-  variant?: string;
 }
 
-const SparkButton: React.FC<SparkButtonProps> = ({ 
-  children, 
-  onClick, 
-  className = '',
-  href,
-  variant
-}) => {
+const SparkButton: React.FC<SparkButtonProps> = ({ children, onClick, className = '' }) => {
   const [sparks, setSparks] = useState<{ id: number; left: string; top: string }[]>([]);
   
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget;
     const rect = button.getBoundingClientRect();
     
@@ -48,31 +40,10 @@ const SparkButton: React.FC<SparkButtonProps> = ({
     if (onClick) onClick();
   };
   
-  const commonProps = {
-    className: `relative overflow-hidden spark-container ${className}`,
-    onClick: handleClick
-  };
-  
-  return href ? (
-    <a 
-      href={href}
-      {...commonProps}
-    >
-      {children}
-      {sparks.map(spark => (
-        <div
-          key={spark.id}
-          className="spark"
-          style={{
-            left: spark.left,
-            top: spark.top,
-          }}
-        />
-      ))}
-    </a>
-  ) : (
+  return (
     <button 
-      {...commonProps}
+      onClick={handleClick}
+      className={`relative overflow-hidden spark-container ${className}`}
     >
       {children}
       {sparks.map(spark => (
