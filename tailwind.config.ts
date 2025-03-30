@@ -20,8 +20,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ['Inter', 'Comic Neue', 'sans-serif'],
 				mono: ['Fira Code', 'monospace'],
+				comic: ['Comic Neue', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -74,6 +75,13 @@ export default {
 					green: '#10b981',
 					yellow: '#f59e0b',
 					red: '#ef4444',
+				},
+				ghibli: {
+					blue: '#4DA6FF',
+					green: '#7ED957',
+					tan: '#F0E6D2',
+					brown: '#A67C52',
+					red: '#FF7F50',
 				},
 			},
 			borderRadius: {

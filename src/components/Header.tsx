@@ -17,23 +17,20 @@ const Header: React.FC = () => {
 
   // Top 4 highlights to display
   const highlights = [
-    { text: " Ultimate Team Award, Zeta: Delivered 7 projects in 3 months with a 2-engineer team, demonstrating speed and hardwork.", color: "text-tech-green" },
-    { text: "2169 (Master) Top 50 in India at CodeForces", color: "text-tech-purple" },
-    { text: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs", color: "text-tech-blue" },
-    { text: "4 Times ACM ICPC Regionalist", color: "text-tech-cyan" }
+    { text: " Ultimate Team Award, Zeta: Delivered 7 projects in 3 months with a 2-engineer team, demonstrating speed and hardwork.", color: "text-ghibli-green" },
+    { text: "2169 (Master) Top 50 in India at CodeForces", color: "text-ghibli-blue" },
+    { text: "Winner at ETHIndia Hackathon 2023 under the 'Best use of dApp Launchpad' track by Polygon Labs", color: "text-ghibli-red" },
+    { text: "4 Times ACM ICPC Regionalist", color: "text-ghibli-brown" }
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-hero-pattern pt-16">
+    <div className="relative min-h-screen flex flex-col items-center justify-center ghibli-bg pt-16">
       <div className="absolute inset-0 bg-tech-grid bg-[length:50px_50px] opacity-10 pointer-events-none"></div>
       <motion.div
         className="absolute inset-0 z-0"
-        initial={{ backgroundPosition: '0% 0%' }}
-        animate={{ backgroundPosition: '100% 100%' }}
-        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-        style={{
-          backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 30%), radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.05) 0%, transparent 40%)',
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
       />
 
       <div className="container px-4 mx-auto relative z-10">
@@ -42,26 +39,30 @@ const Header: React.FC = () => {
             <HoverCard>
               <HoverCardTrigger>
                 <motion.h1
-                  className="text-4xl md:text-5xl font-bold mb-4 relative inline-block cursor-pointer"
+                  className="text-4xl md:text-5xl font-bold mb-4 relative inline-block cursor-pointer font-comic hover:text-ghibli-blue transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                   whileHover={{
                     scale: 1.05,
-                    color: "rgba(139, 92, 246, 1)",
                     transition: { duration: 0.2 }
                   }}
                 >
                   Priyanshu Pathak
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-purple to-tech-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                  <motion.span
+                    className="absolute bottom-0 left-0 w-full h-1 bg-ghibli-blue"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </motion.h1>
               </HoverCardTrigger>
-              <HoverCardContent className="w-80 bg-card/90 backdrop-blur-sm border border-accent/20">
+              <HoverCardContent className="comic-card w-80">
                 <div className="flex flex-col space-y-2">
-                  <h3 className="text-lg font-semibold">Priyanshu Pathak</h3>
-                  <p className="text-sm text-muted-foreground">Software Engineer & Competitive Programmer</p>
-                  <div className="h-0.5 w-full bg-gradient-to-r from-accent to-primary/50 my-1"></div>
-                  <p className="text-xs">SWE at Zeta & Top 50 in India at CodeForces with a rating of 2169</p>
+                  <h3 className="text-lg font-semibold font-comic">Priyanshu Pathak</h3>
+                  <p className="text-sm text-muted-foreground font-comic">Software Engineer & Competitive Programmer</p>
+                  <div className="h-1 w-full bg-gradient-to-r from-ghibli-blue to-ghibli-green my-1"></div>
+                  <p className="text-xs font-comic">SWE at Zeta & Top 50 in India at CodeForces with a rating of 2169</p>
                 </div>
               </HoverCardContent>
             </HoverCard>
@@ -73,17 +74,17 @@ const Header: React.FC = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="gradient-text font-semibold text-xl">Software Engineer & Competitive Programmer</span>
+                  <span className="font-comic font-semibold text-xl text-ghibli-blue">Software Engineer & Competitive Programmer</span>
                 </motion.div>
               ) : (
-                <div className="typing-animation text-xl font-semibold w-full">
+                <div className="typing-animation text-xl font-semibold font-comic w-full text-ghibli-blue">
                   Software Engineer & Competitive Programmer
                 </div>
               )}
             </div>
 
             <motion.p
-              className="text-muted-foreground mb-8"
+              className="text-muted-foreground mb-8 font-comic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
@@ -97,7 +98,7 @@ const Header: React.FC = () => {
               transition={{ delay: 1.5, duration: 0.5 }}
             >
               <SparkButton
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                className="comic-button font-comic hover:bg-ghibli-blue"
                 onClick={() => window.scrollTo({ top: document.getElementById('experience')?.offsetTop, behavior: 'smooth' })}
               >
                 Explore My Work
@@ -112,10 +113,10 @@ const Header: React.FC = () => {
             transition={{ delay: 0.5, duration: 0.7 }}
           >
             <div className="relative">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-tech-blue/20 to-tech-purple/20 rounded-lg transform -rotate-3 z-0"></div>
-              <div className="glass-card p-6 z-10 relative transform rotate-3 animate-float">
-                <h3 className="text-xl font-bold mb-4">Highlights</h3>
-                <ul className="space-y-2">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-ghibli-blue/20 to-ghibli-green/20 rounded-lg transform -rotate-3 z-0"></div>
+              <div className="comic-card p-6 z-10 relative transform rotate-3 animate-float">
+                <h3 className="text-xl font-bold mb-4 font-comic">Highlights</h3>
+                <ul className="space-y-2 font-comic">
                   {highlights.map((highlight, index) => (
                     <li key={index} className="flex items-center">
                       <span className={`mr-2 ${highlight.color}`}>•</span>
