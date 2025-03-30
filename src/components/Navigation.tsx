@@ -29,7 +29,6 @@ const Navigation: React.FC = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Achievements', href: '#achievements' },
-    { name: 'For Nerds', href: '#for-nerds' },
     { name: 'Contact', href: '#contact' },
   ];
 

@@ -69,7 +69,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="relative overflow-x-hidden">
         <HiddenExperiences />
         <div 
-          className={`fixed inset-0 pointer-events-none z-0 bg-cover bg-center opacity-20 ${theme === 'dark' ? 'opacity-10' : 'opacity-5'}`}
+          className={`fixed inset-0 pointer-events-none z-0 bg-cover bg-center ${theme === 'dark' ? 'opacity-10' : 'opacity-5'}`}
           style={{ 
             backgroundImage: 'url(/lovable-uploads/4fde4276-1eec-40f3-ac72-c3e22679c614.png)',
             backgroundRepeat: 'no-repeat',

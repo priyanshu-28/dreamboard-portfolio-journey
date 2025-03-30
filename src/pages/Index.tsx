@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import Header from '@/components/Header';
@@ -9,7 +8,6 @@ import AchievementsSection from '@/components/AchievementsSection';
 import ContactSection from '@/components/ContactSection';
 import Navigation from '@/components/Navigation';
 import MouseEffect from '@/components/MouseEffect';
-import ForNerdsSection from '@/components/ForNerdsSection';
 import { motion } from 'framer-motion';
 
 // Experience data
@@ -215,17 +213,6 @@ const Index: React.FC = () => {
           <h2 className="text-3xl font-bold mb-12 text-center text-glow-animation">Achievements</h2>
           <AchievementsSection achievements={achievementsData} />
         </div>
-      </motion.section>
-
-      <motion.section
-        id="for-nerds"
-        className="py-20 px-4 bg-secondary/30 section-transition"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <ForNerdsSection />
       </motion.section>
 
       <motion.section
