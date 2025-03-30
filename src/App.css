@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,121 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Anime/Studio Ghibli Inspired Theme */
+.gradient-text {
+  background: linear-gradient(45deg, #419d78, #ebba5b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(3deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(3deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.text-tech-green {
+  color: #419d78;
+}
+
+.text-tech-blue {
+  color: #2d7dd2;
+}
+
+.text-tech-cyan {
+  color: #2dc8b9;
+}
+
+.text-tech-purple {
+  color: #8e6ac1;
+}
+
+.typing-animation {
+  position: relative;
+  width: fit-content;
+}
+
+.typing-animation::after {
+  content: "|";
+  position: absolute;
+  right: -8px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.text-glow-animation {
+  animation: textGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 2px rgba(65, 157, 120, 0.1); }
+  to { text-shadow: 0 0 8px rgba(65, 157, 120, 0.5); }
+}
+
+.section-transition::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to top, currentColor, transparent);
+  opacity: 0.05;
+}
+
+/* Rainbow mode animation */
+.rainbow-transition {
+  animation: rainbowBackground 10s linear infinite;
+}
+
+@keyframes rainbowBackground {
+  0% { background-color: #ffadad; color: #1a1a1a; }
+  14% { background-color: #ffd6a5; color: #1a1a1a; }
+  28% { background-color: #fdffb6; color: #1a1a1a; }
+  42% { background-color: #caffbf; color: #1a1a1a; }
+  57% { background-color: #9bf6ff; color: #1a1a1a; }
+  71% { background-color: #a0c4ff; color: #1a1a1a; }
+  85% { background-color: #bdb2ff; color: #1a1a1a; }
+  100% { background-color: #ffadad; color: #1a1a1a; }
+}
+
+/* Special hover effects - secret */
+[data-hidden-area] {
+  position: relative;
+  z-index: 30;
+}
+
+[data-hidden-area]:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+[data-hidden-area]:hover:after {
+  opacity: 0.1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
 }

@@ -32,10 +32,10 @@ const MouseEffect: React.FC = () => {
       style={{
         left: `${mousePosition.x}px`,
         top: `${mousePosition.y}px`,
-        width: '400px',
-        height: '400px',
+        width: '300px',
+        height: '300px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%)',
+        background: 'radial-gradient(circle, rgba(65, 157, 120, 0.15) 0%, rgba(65, 157, 120, 0) 70%)',
         transform: 'translate(-50%, -50%)',
         opacity: isMoving ? 0.8 : 0.4,
         transition: 'opacity 0.3s ease'

@@ -3,9 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SparkButton from './SparkButton';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { useToast } from "@/hooks/use-toast";
+
+interface SparkButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+  variant?: string;
+  href?: string;
+}
 
 const Header: React.FC = () => {
   const [typingComplete, setTypingComplete] = useState(false);
+  const [nameClickCount, setNameClickCount] = useState(0);
+  const { toast } = useToast();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,6 +34,18 @@ const Header: React.FC = () => {
     { text: "4 Times ACM ICPC Regionalist", color: "text-tech-cyan" }
   ];
 
+  const handleNameClick = () => {
+    setNameClickCount(prev => prev + 1);
+    
+    if (nameClickCount === 4) {
+      toast({
+        title: "Easter Egg Unlocked!",
+        description: "Wow, you really like clicking my name! Here's a secret: try the Konami code (↑↑↓↓←→←→BA)",
+        className: "border-green-500"
+      });
+    }
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-hero-pattern pt-16">
       <div className="absolute inset-0 bg-tech-grid bg-[length:50px_50px] opacity-10 pointer-events-none"></div>
@@ -32,7 +55,7 @@ const Header: React.FC = () => {
         animate={{ backgroundPosition: '100% 100%' }}
         transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
         style={{
-          backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 30%), radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.05) 0%, transparent 40%)',
+          backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(65, 157, 120, 0.08) 0%, transparent 30%), radial-gradient(circle at 70% 60%, rgba(235, 186, 91, 0.05) 0%, transparent 40%)',
         }}
       />
 
@@ -48,12 +71,13 @@ const Header: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   whileHover={{
                     scale: 1.05,
-                    color: "rgba(139, 92, 246, 1)",
+                    color: "rgba(65, 157, 120, 1)",
                     transition: { duration: 0.2 }
                   }}
+                  onClick={handleNameClick}
                 >
                   Priyanshu Pathak
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-purple to-tech-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-tech-green to-tech-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                 </motion.h1>
               </HoverCardTrigger>
               <HoverCardContent className="w-80 bg-card/90 backdrop-blur-sm border border-accent/20">
@@ -83,18 +107,19 @@ const Header: React.FC = () => {
             </div>
 
             <motion.p
-              className="text-muted-foreground mb-8"
+              className="text-muted-foreground mb-8 max-w-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
             >
-              A chill guy, building high-performance software solutions, and doing competitive programming in free time.
+              A chill guy, building high-performance software solutions, and doing competitive programming in free time. Always looking through the window for inspiration.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.5 }}
+              className="flex flex-wrap gap-4"
             >
               <SparkButton
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
@@ -112,7 +137,7 @@ const Header: React.FC = () => {
             transition={{ delay: 0.5, duration: 0.7 }}
           >
             <div className="relative">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-tech-blue/20 to-tech-purple/20 rounded-lg transform -rotate-3 z-0"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#419d78]/20 to-[#ebba5b]/20 rounded-lg transform -rotate-3 z-0"></div>
               <div className="glass-card p-6 z-10 relative transform rotate-3 animate-float">
                 <h3 className="text-xl font-bold mb-4">Highlights</h3>
                 <ul className="space-y-2">
