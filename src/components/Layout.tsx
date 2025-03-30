@@ -12,7 +12,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark'); // Default to dark
   const { toast } = useToast();
-  const [isRainbowMode, setIsRainbowMode] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
@@ -27,30 +26,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       localStorage.setItem('theme', 'dark');
     }
     
-    // Hidden Experience: Double-press 'r' for rainbow mode
-    let lastKeyTime = 0;
-    let lastKey = '';
+    // Show a hint after 60 seconds
+    const timer = setTimeout(() => {
+      toast({
+        title: "Psst... Want to find a secret?",
+        description: "Try typing 'marvel' anywhere on the site!",
+      });
+    }, 60000); // 1 minute
     
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const currentTime = new Date().getTime();
-      if (e.key === 'r' && lastKey === 'r' && currentTime - lastKeyTime < 500) {
-        setIsRainbowMode(prev => !prev);
-        if (!isRainbowMode) {
-          toast({
-            title: "🌈 Rainbow Mode Activated!",
-            description: "Double-press 'r' again to deactivate",
-          });
-        }
-      }
-      lastKey = e.key;
-      lastKeyTime = currentTime;
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isRainbowMode, toast]);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -60,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className={`min-h-screen bg-background text-foreground ${isRainbowMode ? 'rainbow-transition' : ''}`}>
+    <div className="min-h-screen bg-background text-foreground">
       <button 
         onClick={toggleTheme}
         aria-label="Toggle theme"

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { toast } from "@/components/ui/use-toast";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from 'framer-motion';
 
@@ -22,12 +21,12 @@ const useInteractionCounter = (threshold: number, onThresholdReached: () => void
 
 export const HiddenExperiences = () => {
   const { toast } = useToast();
-  const [konami, setKonami] = useState<string[]>([]);
+  const [secretCode, setSecretCode] = useState<string[]>([]);
   const [secretWindow, setSecretWindow] = useState(false);
   const [foundSecrets, setFoundSecrets] = useState<string[]>([]);
   
-  // #1: Konami Code Easter Egg
-  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  // #1: Simple Secret Code - just type "marvel"
+  const simpleSecretCode = ['m', 'a', 'r', 'v', 'e', 'l'];
   
   // #2: Click counter
   const { increment: incrementClicks } = useInteractionCounter(15, () => {
@@ -39,40 +38,28 @@ export const HiddenExperiences = () => {
       setFoundSecrets(prev => [...prev, 'clicks']);
     }
   });
-  
-  // #3: Scroll tracker
-  const { increment: incrementScrolls } = useInteractionCounter(25, () => {
-    if (!foundSecrets.includes('scroll')) {
-      toast({
-        title: "Scrolling Enthusiast!",
-        description: "You've discovered the scroll secret! Keep exploring!",
-        variant: "default",
-      });
-      setFoundSecrets(prev => [...prev, 'scroll']);
-    }
-  });
 
-  // Handle keyboard input for Konami code
+  // Handle keyboard input for Secret Code
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const newKonami = [...konami, e.key];
+      const newSecretCode = [...secretCode, e.key.toLowerCase()];
       
-      // Keep only the last N keys pressed where N is the length of the konami code
-      if (newKonami.length > konamiCode.length) {
-        newKonami.shift();
+      // Keep only the last N keys pressed where N is the length of the secret code
+      if (newSecretCode.length > simpleSecretCode.length) {
+        newSecretCode.shift();
       }
       
-      setKonami(newKonami);
+      setSecretCode(newSecretCode);
       
-      // Check if user has entered the konami code
-      if (newKonami.join(',') === konamiCode.join(',') && !foundSecrets.includes('konami')) {
+      // Check if user has entered the secret code
+      if (newSecretCode.join('') === simpleSecretCode.join('') && !foundSecrets.includes('secretCode')) {
         toast({
-          title: "⭐ KONAMI CODE ACTIVATED! ⭐",
+          title: "⭐ MARVEL SECRET CODE ACTIVATED! ⭐",
           description: "You've unlocked developer mode! (Not really, but nice work finding this!)",
           variant: "destructive",
           duration: 5000,
         });
-        setFoundSecrets(prev => [...prev, 'konami']);
+        setFoundSecrets(prev => [...prev, 'secretCode']);
         
         // Temporarily show something cool
         document.body.style.transition = "all 0.5s";
@@ -84,19 +71,13 @@ export const HiddenExperiences = () => {
       }
     };
     
-    const handleScroll = () => {
-      incrementScrolls();
-    };
-
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('scroll', handleScroll);
     };
-  }, [konami, konamiCode, incrementScrolls, foundSecrets, toast]);
+  }, [secretCode, simpleSecretCode, foundSecrets, toast]);
   
-  // #4: Track document clicks
+  // Track document clicks
   useEffect(() => {
     const handleDocumentClick = () => {
       incrementClicks();
@@ -108,7 +89,7 @@ export const HiddenExperiences = () => {
     };
   }, [incrementClicks]);
   
-  // #5: Secret message when user stays for a while
+  // Secret message when user stays for a while
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!foundSecrets.includes('patience')) {
@@ -134,7 +115,7 @@ export const HiddenExperiences = () => {
     >
       <div className="bg-card p-6 rounded-lg max-w-md">
         <h2 className="text-2xl font-bold mb-4">You found the secret window!</h2>
-        <p>This is a hidden feature of the site. There are {5 - foundSecrets.length} more secrets to find!</p>
+        <p>This is a hidden feature of the site. Try typing "marvel" anywhere on the page to see what happens!</p>
         <button 
           className="mt-4 bg-primary text-primary-foreground px-4 py-2 rounded"
           onClick={(e) => {

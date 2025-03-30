@@ -1,143 +1,146 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Home, 
-  Briefcase, 
-  GraduationCap, 
-  Code, 
-  Award, 
-  Mail, 
-  Menu, 
-  X 
-} from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useToast } from "@/hooks/use-toast";
 
 const Navigation: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  const navItems = [
-    { id: 'home', label: 'Home', icon: <Home size={20} /> },
-    { id: 'experience', label: 'Experience', icon: <Briefcase size={20} /> },
-    { id: 'education', label: 'Education', icon: <GraduationCap size={20} /> },
-    { id: 'skills', label: 'Skills', icon: <Code size={20} /> },
-    { id: 'projects', label: 'Projects', icon: <Briefcase size={20} /> },
-    { id: 'achievements', label: 'Achievements', icon: <Award size={20} /> },
-    { id: 'contact', label: 'Contact', icon: <Mail size={20} /> }
-  ];
-  
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: id === 'home' ? 0 : element.offsetTop - 80,
-        behavior: 'smooth'
-      });
-      setActiveSection(id);
-      setMobileMenuOpen(false);
-    }
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { toast } = useToast();
   
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id)).filter(Boolean);
-      
-      const currentSection = sections.find((section) => {
-        if (!section) return false;
-        const rect = section.getBoundingClientRect();
-        return rect.top <= 200 && rect.bottom >= 200;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection.id);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const items = [
+    { name: 'Home', href: '#home' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Education', href: '#education' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Achievements', href: '#achievements' },
+    { name: 'For Nerds', href: '#for-nerds' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  const itemVariants = {
+    closed: { y: 20, opacity: 0 },
+    open: { y: 0, opacity: 1 }
+  };
+
+  const menuVariants = {
+    closed: { opacity: 0, x: "100%" },
+    open: { opacity: 1, x: 0, transition: { when: "beforeChildren", staggerChildren: 0.05 } }
+  };
   
+  const handleDoubleClick = () => {
+    // Show a hint about the marvel secret
+    toast({
+      title: "Secret Hint",
+      description: "Try typing 'marvel' anywhere on the page for a special effect!",
+    });
+  };
+
   return (
     <>
-      {/* Desktop Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 hidden md:block"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+      <nav 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 md:px-8",
+          isScrolled ? "py-2 bg-background/80 backdrop-blur-md shadow-md" : "py-4"
+        )}
       >
-        <div className="bg-background/80 backdrop-blur-md border-b border-border shadow-sm">
-          <div className="container mx-auto px-6 py-4">
-            <div className="flex justify-center items-center">
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-2 mx-2 px-4 py-2 rounded-full transition-all ${
-                    activeSection === item.id 
-                      ? 'bg-primary text-primary-foreground' 
-                      : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                </motion.button>
-              ))}
-            </div>
+        <div className="container mx-auto flex justify-between items-center">
+          <motion.span 
+            className={cn(
+              "text-lg font-bold",
+              isScrolled ? "text-foreground" : "text-foreground"
+            )}
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onDoubleClick={handleDoubleClick}
+          >
+            Priyanshu Pathak
+          </motion.span>
+
+          <div className="hidden md:flex items-center space-x-6">
+            {items.map((item, i) => (
+              <motion.a
+                key={i}
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium relative hover:text-primary transition-colors",
+                  isScrolled ? "text-foreground" : "text-foreground"
+                )}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {item.name}
+                <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-primary scale-x-0 origin-left transition-transform hover:scale-x-100" />
+              </motion.a>
+            ))}
           </div>
+
+          <motion.button
+            onClick={toggleMenu}
+            className="block md:hidden text-foreground p-1 rounded-md"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Menu size={24} />
+          </motion.button>
         </div>
-      </motion.nav>
-      
-      {/* Mobile Navigation Button */}
-      <motion.button
-        className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-lg md:hidden"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        whileTap={{ scale: 0.9 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </motion.button>
-      
-      {/* Mobile Menu */}
+      </nav>
+
+      {/* Mobile menu */}
       <motion.div 
-        className="fixed inset-0 z-40 md:hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: mobileMenuOpen ? 1 : 0, pointerEvents: mobileMenuOpen ? 'auto' : 'none' }}
+        className="fixed inset-0 z-50 md:hidden"
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        variants={menuVariants}
+        style={{ display: isOpen ? "block" : "none" }}
       >
-        <div className="absolute inset-0 bg-background/90 backdrop-blur-md" onClick={() => setMobileMenuOpen(false)} />
-        <motion.div 
-          className="absolute bottom-20 right-6 flex flex-col gap-2 items-end"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ 
-            y: mobileMenuOpen ? 0 : 50, 
-            opacity: mobileMenuOpen ? 1 : 0,
-            transition: { 
-              staggerChildren: 0.05,
-              staggerDirection: mobileMenuOpen ? 1 : -1
-            }
-          }}
-        >
-          {navItems.map((item, index) => (
-            <motion.button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                activeSection === item.id 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-secondary/80 text-secondary-foreground'
-              }`}
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: index * 0.05 }}
-              whileTap={{ scale: 0.95 }}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+        <motion.div className="absolute right-0 top-0 bottom-0 w-64 bg-card shadow-xl p-6 flex flex-col">
+          <div className="flex justify-between items-center mb-8">
+            <motion.p 
+              className="text-lg font-bold"
+              variants={itemVariants}
             >
-              <span>{item.label}</span>
-              {item.icon}
+              Menu
+            </motion.p>
+            <motion.button 
+              onClick={() => setIsOpen(false)}
+              variants={itemVariants}
+            >
+              <X size={24} />
             </motion.button>
-          ))}
+          </div>
+          <div className="flex flex-col space-y-4">
+            {items.map((item, i) => (
+              <motion.a
+                key={i}
+                href={item.href}
+                className="text-foreground hover:text-primary py-2 border-b border-border/50"
+                variants={itemVariants}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </motion.a>
+            ))}
+          </div>
         </motion.div>
       </motion.div>
     </>

@@ -40,7 +40,7 @@ const Header: React.FC = () => {
     if (nameClickCount === 4) {
       toast({
         title: "Easter Egg Unlocked!",
-        description: "Wow, you really like clicking my name! Here's a secret: try the Konami code (↑↑↓↓←→←→BA)",
+        description: "Wow, you really like clicking my name! Here's a secret: try typing 'marvel' anywhere on the site!",
         className: "border-green-500"
       });
     }
