@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import MarvelBackground from './MarvelBackground';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -33,12 +34,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-comic">
+    <div className="min-h-screen bg-background text-foreground font-comic relative">
+      <MarvelBackground />
       <Button 
         variant="outline"
         onClick={toggleTheme}
         aria-label="Toggle theme"
-        className="fixed right-4 top-4 z-50 p-2 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/20 transition-all comic-button h-10 w-10 flex items-center justify-center"
+        className="fixed right-4 top-4 z-50 p-2 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-primary/20 transition-all comic-button h-10 w-10 flex items-center justify-center border-2 border-red-500"
       >
         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
       </Button>

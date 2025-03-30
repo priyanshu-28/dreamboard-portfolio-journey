@@ -1,8 +1,18 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+/* Marvel theme styles */
+:root {
+  --marvel-red: #ea384c;
+  --marvel-blue: #0EA5E9;
+  --marvel-purple: #D946EF;
+  --marvel-orange: #F97316;
+  --marvel-black: #000000e6;
 }
 
 .logo {
@@ -11,11 +21,67 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em var(--marvel-red));
 }
+
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em var(--marvel-blue));
+}
+
+.text-glow-animation {
+  position: relative;
+  text-shadow: 0 0 10px var(--marvel-red);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px var(--marvel-red); }
+  50% { text-shadow: 0 0 20px var(--marvel-blue), 0 0 30px var(--marvel-purple); }
+}
+
+.section-transition {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--marvel-red), var(--marvel-blue), var(--marvel-purple), var(--marvel-orange));
+  z-index: 10;
+}
+
+.comic-button {
+  border: 2px solid var(--marvel-red);
+  box-shadow: 0 0 10px rgba(234, 56, 76, 0.5);
+  transition: all 0.3s ease;
+}
+
+.comic-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(234, 56, 76, 0.8);
+}
+
+.hero-name-hover {
+  transition: all 0.3s ease;
+}
+
+.hero-name-hover:hover {
+  color: var(--marvel-red);
+  transform: scale(1.05);
+  text-shadow: 0 0 15px rgba(234, 56, 76, 0.8);
+  animation: comic-shake 0.5s ease-in-out;
+}
+
+@keyframes comic-shake {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
 }
 
 @keyframes logo-spin {
@@ -39,4 +105,21 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.timeline-item {
+  border-left: 3px solid var(--marvel-red);
+  position: relative;
+}
+
+.timeline-item:hover::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--marvel-red);
+  z-index: 10;
 }
