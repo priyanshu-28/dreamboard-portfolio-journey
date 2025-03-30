@@ -38,7 +38,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
           </CardContent>
           <CardFooter>
             <SparkButton className="text-sm text-primary hover:text-accent transition-colors">
-              Learn more
+              Sparky Button
             </SparkButton>
           </CardFooter>
         </Card>
